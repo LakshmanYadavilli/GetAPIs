@@ -22,12 +22,14 @@ const initializeAndServer = async () => {
   }
 };
 initializeAndServer();
+//GET aLL Details
 app.get("/players/", async (request, response) => {
   const query = `SELECT * FROM cricket_team `;
   const playersArray = await db.all(query);
 
   response.send(playersArray);
 });
+//Get for specified Student_Id
 app.get("/players/:playerId/", async (request, response) => {
   const { playerId } = request.params;
   const query = `SELECT * FROM cricket_team WHERE player_id=${playerId}
@@ -35,20 +37,7 @@ app.get("/players/:playerId/", async (request, response) => {
   const playersArray = await db.get(query);
   response.send(playersArray);
 });
-//post Method
-app.post("/players/", async (request, response) => {
-  const body_ = request.body;
-  const { playerName, jerseyNumber, Role } = body_;
 
-  response.send(playersArray);
-});
-app.get("/players/:playerId", async (request, response) => {
-  const { playerId } = request.params;
-  const query = `SELECT * FROM cricket_team WHERE player_id=${playerId}
-  `;
-  const playersArray = await db.get(query);
-  response.send(playersArray);
-});
 //post Method
 app.post("/players/", async (request, response) => {
   const body = request.body;
