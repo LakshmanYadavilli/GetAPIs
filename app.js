@@ -57,7 +57,7 @@ app.post("/players/", async (request, response) => {
   const query = `INSERT INTO cricket_team(player_name,jersey_number,role) VALUES('${playerName}',${jerseyNumber},'${Role}')`;
   const dBarray = await db.run(query);
   const player_Id = dBarray.lastID;
-  app.send("Succesfully Created...");
+  response.send("Succesfully Created...");
 });
 
 //put Method
@@ -66,14 +66,14 @@ app.put("/players/:playerId/", async (request, response) => {
   const { playerName, jerseyN } = body;
   let { player_Id } = request.params;
   let Q = `UPDATE cricket_team SET player_name='${playerName}',jersey_number=${jerseyN} WHERE player_id=${player_Id} `;
-  const UpdateQuery = await db.run(Q);
-  app.send("Succesfully Updated...");
+  await db.run(Q);
+  response.send("Succesfully Updated...");
 });
 
 //DELETE method
 app.delete("/players/:playerId/", async (request, response) => {
   let { player_Id } = request.params;
   let Q = `DELETE FROM cricket_team WHERE player_id=${player_Id}`;
-  const deleteQ = await db.run(Q);
-  app.send("Succesfully Delete....");
+  await db.run(Q);
+  response.send("Succesfully Delete....");
 });
