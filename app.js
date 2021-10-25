@@ -38,7 +38,7 @@ app.get("/players/:playerId", async (request, response) => {
 app.post("/players/", async (request, response) => {
   const body = request.body;
   const { playerName, jerseyNumber, Role } = body;
-  const query = `INSERT INTO cricket_team(player_name,jersey_name,role) VALUES('${playerName}',${jerseyNumber},'${Role}')`;
+  const query = `INSERT INTO cricket_team(player_name,jersey_number,role) VALUES('${playerName}',${jerseyNumber},'${Role}')`;
   const dBarray = await db.run(query);
   const player_Id = dBarray.lastID;
   app.send("Succesfully Created...");
