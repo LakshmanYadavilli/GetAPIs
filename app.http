@@ -1,13 +1,16 @@
 GET http://localhost:3000/players/
 ###
 
+
+
 GET http://localhost:3000/players/5/
 ###
 
 POST http://localhost:3000/players/
 Content-Type:application/json
 
-{   
+{
+
     "player_name":"Y.V.lakshman",
     "jersey_number":59,
     "role":"Wicket-Keeper"
@@ -19,8 +22,9 @@ Content-Type: application/json
 
 {
     "player_name":"Yadavili",
-    "jersey_number":59
+    "jersey_number":26
 }
 ###
 
-DELETE http://localhost:3000/players/4
+DELETE http://localhost:3000/players/2
+

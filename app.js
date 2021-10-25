@@ -25,6 +25,7 @@ initializeAndServer();
 app.get("/players/", async (request, response) => {
   const query = `SELECT * FROM cricket_team `;
   const playersArray = await db.all(query);
+
   response.send(playersArray);
 });
 app.get("/players/:playerId/", async (request, response) => {
@@ -39,11 +40,26 @@ app.post("/players/", async (request, response) => {
   const body_ = request.body;
   const { playerName, jerseyNumber, Role } = body_;
 
+  response.send(playersArray);
+});
+app.get("/players/:playerId", async (request, response) => {
+  const { playerId } = request.params;
+  const query = `SELECT * FROM cricket_team WHERE player_id=${playerId}
+  `;
+  const playersArray = await db.get(query);
+  response.send(playersArray);
+});
+//post Method
+app.post("/players/", async (request, response) => {
+  const body = request.body;
+  const { playerName, jerseyNumber, Role } = body;
+
   const query = `INSERT INTO cricket_team(player_name,jersey_number,role) VALUES('${playerName}',${jerseyNumber},'${Role}')`;
   const dBarray = await db.run(query);
   const player_Id = dBarray.lastID;
   app.send("Succesfully Created...");
 });
+
 //put Method
 app.put("/players/:playerId/", async (request, response) => {
   let body = request.body;
@@ -57,7 +73,7 @@ app.put("/players/:playerId/", async (request, response) => {
 //DELETE method
 app.delete("/players/:playerId/", async (request, response) => {
   let { player_Id } = request.params;
-  let q = `DELETE FROM cricket_team WHERE player_id=${player_Id}`;
-  const deleteQ = await db.run(q);
+  let Q = `DELETE FROM cricket_team WHERE player_id=${player_Id}`;
+  const deleteQ = await db.run(Q);
   app.send("Succesfully Delete....");
 });
