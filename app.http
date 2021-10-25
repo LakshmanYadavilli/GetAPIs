@@ -1,1 +1,14 @@
 GET http://localhost:3000/players/
+###
+
+GET http://localhost:3000/players/5
+###
+
+POST http://localhost:3000/players/
+Content-Type:application/json
+
+{
+    "player_name":"Y.V.lakshman",
+    "jersey_number":59,
+    "role":"Wicket-Keeper"
+}
