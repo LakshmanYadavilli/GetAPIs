@@ -22,9 +22,9 @@ Content-Type: application/json
 
 {
     "player_name":"Yadavili",
-    "jersey_number":26
+    "jersey_number":60
 }
 ###
 
-DELETE http://localhost:3000/players/2
+DELETE http://localhost:3000/players/4
 
